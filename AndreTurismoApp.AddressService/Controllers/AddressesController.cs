@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreTurismoApp.AddressService.Data;
 using AndreTurismoApp.Models;
 using AndreTurismoApp.Services;
+using System.Net;
 
 namespace AndreTurismoApp.AddressService.Controllers
 {
@@ -89,17 +90,17 @@ namespace AndreTurismoApp.AddressService.Controllers
         [HttpPost]
         public async Task<ActionResult<Address>> PostAddress(Address address)
         {
-          if (_context.Address == null)
-          {
-              return Problem("Entity set 'AndreTurismoAppAddressServiceContext.Address'  is null.");
-          }
+            if (_context.Address == null)
+            {
+                return Problem("Entity set 'AndreTurismoAppAddressServiceContext.Address'  is null.");
+            }
             AddressDTO addressDTO = _postOfficeService.GetAddress(address.CEP).Result;
             var addressComplete = new Address(addressDTO);
             addressComplete.Number = address.Number;
             addressComplete.Complement = address.Complement;
             addressComplete.RegisterDate = address.RegisterDate;
-            addressComplete.City.RegisterDate = address.City.RegisterDate;
-            
+            addressComplete.City.RegisterDate = address.RegisterDate;
+
             _context.Address.Add(addressComplete);
             await _context.SaveChangesAsync();
 

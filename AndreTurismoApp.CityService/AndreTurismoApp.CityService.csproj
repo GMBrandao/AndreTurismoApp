@@ -18,12 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AndreTurismoApp.Models\AndreTurismoApp.Models.csproj" />
-    <ProjectReference Include="..\AndreTurismoApp.Services\AndreTurismoApp.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
